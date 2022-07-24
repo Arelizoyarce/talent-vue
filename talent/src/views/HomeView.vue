@@ -1,8 +1,8 @@
 <template>
-<v-content>
+<v-main>
     <CoursesSection></CoursesSection>
     <ToolsSection></ToolsSection>
-</v-content>
+</v-main>
 </template>
 
 <script>
