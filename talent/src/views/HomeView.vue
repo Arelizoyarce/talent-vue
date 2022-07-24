@@ -1,6 +1,18 @@
 <template>
-<div>
-    <h1>SOY EL COMPONENTE DE home</h1>
-</div>
-
+<v-content>
+    <CoursesSection></CoursesSection>
+    <ToolsSection></ToolsSection>
+</v-content>
 </template>
+
+<script>
+import ToolsSection from "../components/ToolsSection.vue";
+import CoursesSection from "../components/CoursesSection.vue";
+
+export default {
+  components: {
+    ToolsSection,
+    CoursesSection
+},
+}
+</script>
