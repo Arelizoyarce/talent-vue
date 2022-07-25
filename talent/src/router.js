@@ -15,7 +15,7 @@ export default new Router({
             component: HomeView
         },
         {
-            path: '/mentorContact',
+            path: '/contactMentor',
             name: 'contact',
             component: ContactView
         }

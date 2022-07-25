@@ -37,7 +37,7 @@
                 </v-card-title>
                 <v-card-actions>
                     <v-btn block color="#CE0F65">
-                        <router-link :to="'/mentorContact'" class="text-decoration-none white--text">ENVIAR MENSAJE</router-link>
+                        <router-link :to="'/contactMentor'" class="text-decoration-none white--text">ENVIAR MENSAJE</router-link>
                     </v-btn>
                 </v-card-actions>
             </div>
