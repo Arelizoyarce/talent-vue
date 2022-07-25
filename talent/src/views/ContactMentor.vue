@@ -1,5 +1,16 @@
 <template>
 <div>
-    SOY LA VISTA DE CONTACTO
+    <MentorsSection></MentorsSection>
 </div>
 </template>
+
+<script>
+import MentorsSection from "../components/MentorsSection.vue";
+
+export default {
+    name: 'ContactMentor',
+    components:{
+    MentorsSection
+}
+}
+</script>
