@@ -2,7 +2,7 @@
     <div class="d-flex flex-column white--text my-5">
         <h2 class="d-inline-flex mx-16 pl-xs-6" >Cursos</h2>
         <div class="d-flex flex-row flex-wrap justify-space-around">
-            <v-card v-for="item in result" v-bind:key="item.name" max-width="330" color="#21456E" class="my-4 pa-4"
+            <v-card v-for="item in result" v-bind:key="item.name" :disabled="item.availability === false" max-width="330" color="#21456E" class="my-4 pa-4"
                 elevation="6">
                 <div>
                     <div class="d-flex flex-row white--text justify-space-between">
