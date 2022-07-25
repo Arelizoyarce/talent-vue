@@ -36,8 +36,8 @@
                     Contactar con un mentor
                 </v-card-title>
                 <v-card-actions>
-                    <v-btn block color="#CE0F65" class="white--text">
-                        ENVIAR MENSAJE
+                    <v-btn block color="#CE0F65">
+                        <router-link :to="'/mentorContact'" class="text-decoration-none white--text">ENVIAR MENSAJE</router-link>
                     </v-btn>
                 </v-card-actions>
             </div>
@@ -45,45 +45,5 @@
                 <v-icon x-large>fa fa-newspaper</v-icon>
             </v-list-item-avatar>
         </v-card>
-        <!-- <v-card class="mx-auto" max-width="344" outlined color="#21456E">
-            <v-list-item>
-                <v-list-item-content>
-                    <v-list-item-title class="text-h5 mb-1 white--text">
-                        Noticias
-                    </v-list-item-title>
-                </v-list-item-content>
-                <v-list-item-avatar>
-                    <v-icon
-                    x-large
-                    >fa fa-newspaper</v-icon>
-                </v-list-item-avatar>
-            </v-list-item>
-            <v-card-actions class="ps-3">
-                <v-btn color="#CE0F65" class="white--text">
-                    IR
-                </v-btn>
-            </v-card-actions>
-        </v-card>
-                <v-card class="mx-auto" max-width="344" outlined color="#21456E">
-            <v-list-item>
-                <v-list-item-content>
-                    <v-list-item-title class="text-h5 mb-1 white--text">
-                        Contactar con un mentor
-                    </v-list-item-title>
-                </v-list-item-content>
-                <v-list-item-avatar
-                        tile
-        size="80">
-                    <v-icon
-                    x-large
-                    >fa fa-address-card</v-icon>
-                </v-list-item-avatar>
-            </v-list-item>
-            <v-card-actions class="ps-3">
-                <v-btn color="#CE0F65" class="white--text">
-                    ENVIAR MENSAJE
-                </v-btn>
-            </v-card-actions>
-        </v-card> -->
     </div>
 </template>
