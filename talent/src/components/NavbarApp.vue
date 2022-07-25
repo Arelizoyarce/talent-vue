@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar color="#002855" dense dark>
+        <v-app-bar color="#002855" max-height="90" dark>
             <v-toolbar-title>Talent Innovation</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-card color="#CE0F65" class="d-flex flex-row pa-1">

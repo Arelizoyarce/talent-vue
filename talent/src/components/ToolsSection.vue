@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex flex-row my-6 justify-lg-space-between">
-        <v-card class=" d-flex flex-row mx-auto pa-7 rounded-lg" max-width="300" outlined color="#21456E">
+        <v-card class=" d-flex flex-row mx-auto pa-7 rounded-lg" max-width="330" outlined color="#21456E">
             <div>
                 <v-card-title class="text-h5 white--text">
                     Mis notas
