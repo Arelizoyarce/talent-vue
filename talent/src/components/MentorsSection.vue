@@ -4,9 +4,24 @@
             > Transformación digital
         </v-card-title>
         <v-col class="pa-4" justify="space-between">
-            <v-card class="VER MENTOR SELECCIONADO">
-                <h1>{{ mentorSelect }}</h1>
+            <div>
+            <v-card class="" v-for="item in mentorSelect" v-bind:key="item.name" color="#21456E" max-width="300" min-height="200">
+            <v-avatar>
+                <v-img :src=item.img></v-img>
+            </v-avatar>
+                <v-card-title class="white--text">{{item.name}}</v-card-title>
+                <v-card-subtitle class="white--text">{{item.role}}</v-card-subtitle>
+                <v-card-text>
+                    <h2>Habilidades</h2>
+                    <div v-for="subitem in item.skills" v-bind:key="subitem" class="d-flex flex-row flex-wrap">
+                    <v-card max-width="50">
+                        {{subitem}}
+                    </v-card>
+                    </div>
+                </v-card-text>
             </v-card>
+            <h2 v-if="mentorSelect != ''">Otros Mentores</h2>
+            </div>
             <div class="d-flex flex-column">
                 <v-card v-for="item in mentors" v-bind:key="item.name" @click="getMentor" :id="item.name"
                     class="my-2 pa-4 d-flex flex-row-reverse flex-wrap justify-space-around white--text" max-width="300"
@@ -15,7 +30,7 @@
                         <v-img :src=item.img></v-img>
                     </v-avatar>
                     <div class="d-flex flex-column align-end">
-                        <v-card-title>{{ item.name }}</v-card-title>
+                        <v-card-title>{{item.name}}</v-card-title>
                         <v-card-subtitle> {{ item.role }}</v-card-subtitle>
                     </div>
                 </v-card>
@@ -32,17 +47,17 @@ export default {
     data() {
         return (
             {
-                mentors: [],
-                allMentors: [],
-                mentorSelect: ''
+                mentors: Array,
+                allMentors: Array,
+                mentorSelect: Array
             }
         )
     },
     methods: {
         getMentor(event) {
             this.$emit('sendMentor', event.target.id)
-            this.mentorSelect = event.target.id;
-            this.mentors = this.allMentors.filter((e)=> e.name != this.mentorSelect)
+            this.mentors = this.allMentors.filter((e)=> e.name != event.target.id)
+            this.mentorSelect = this.allMentors.filter((e)=> e.name === event.target.id)
         }
     },
     created() {
@@ -54,6 +69,7 @@ export default {
             this.allMentors = arrayMentors
             this.mentors = this.allMentors
         })
+        this.mentorSelect=''
     }
 }
 </script>
