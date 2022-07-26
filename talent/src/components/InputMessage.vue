@@ -22,19 +22,15 @@ export default {
       answerBot: ''
     })
   },
+  props:['receivedMentor'],
   methods: {
     sendMenssage() {
       this.$emit('setevent', this.input)
       const containerMenssage = {
-        user: 'Carina',
-        mentor: 'Omaira',
+        name: 'Carina',
+        mentor: this.receivedMentor,
         menssage: this.input,
         time: Date()
-      }
-      if (this.input.includes('hola')) {
-        this.answerBot = 'Hola Cómo puedo ayudarte'
-      } else if (this.input.includes('1')) {
-        this.answerBot = 'Eligetal'
       }
       if (this.input != '') {
         addData(containerMenssage)

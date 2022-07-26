@@ -23,7 +23,6 @@ export default {
             sayHi: 'Hola Carina',
             help: 'Escribe brevemente tu consulta',
             img: 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png',
-            menssageUser: null,
             answer: 'RESPUESTA DEFAULT'
             // answers: {
             //     menssage: 'Hola, para ayudarte, indicame sobre qué tema tienes dudas, marcando una de las siguiente opciones',
@@ -53,16 +52,13 @@ export default {
             // },
         })
     },
-    props: ['menssage', 'emitAnswerBot'],
     methods: {
-        receivedMenssageUser(menssage){
-            // console.log('estoy dentro de botcomponente y recibi el mensaje')
-            // this.menssageUser = menssage
+        receivedMenssageUser(menssage, mentor){
             if(menssage != ''){
             return setTimeout(() => {
                 const answerBot = {
                     name: 'Kami',
-                    mentor: 'Omalia',
+                    mentor: mentor,
                     menssage: this.answer,
                     time: Date()
                 }
@@ -70,21 +66,6 @@ export default {
             }, 1000)
             }
         }
-        // sendAnswer(menssage){
-        //     this.menssageUser= menssage;
-        //     console.log('ESTOY EN BOT COMPONENT', menssage)
-        // }
-        // setAnswer() {
-        //     console.log('estoy dentro de set anwer en bot component')
-        //     this.emitAnswer(this.answer)
-        //     // if (this.menssageInput != null) {
-        //     //     console.log('funciono spy anwer en bot chat answer', this.menssageInput)
-        //     //     if (this.menssageInput.includes('hola')) {
-        //     //         console.log('entre al includes')
-        //     //         this.answer = 'HOLA MUNDO'
-        //     //     }
-        //     // }
-        // }
     },
     mounted() {
         this.menssageUser

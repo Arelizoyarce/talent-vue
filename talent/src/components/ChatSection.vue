@@ -7,14 +7,13 @@
 
         <v-card min-width="1000" min-height="500" max-height="500" class=" my-4" color="#21456E">
             <BotAnswer ref="BotAnswer"></BotAnswer>
-            <div v-for="item in menssage" v-bind:key="item.id" max-width="200"
-                :class="item.name === 'Carina' ? 'd-flex flex-column align-end' : 'd-flex flex-column align-start'">
+            <div v-for="item in menssage" v-bind:key="item.id" max-width="200" class="d-flex flex-column align-end">
                 <v-card>
                     {{ item.menssage }}
                 </v-card>
             </div>
         </v-card>
-        <InputMessage @setevent="set"></InputMessage>
+        <InputMessage @setevent="set" :receivedMentor="mentor"></InputMessage>
     </div>
 </template>
 
@@ -27,16 +26,15 @@ export default {
     name: 'ChatSection',
     data() {
         return ({
-            menssage: null,
-            input: null,
-            receivedMenssageUser:'',
+            menssage: Array,
+            input: String,
         })
     },
     components: {
         BotAnswer,
         InputMessage
     },
-    props:[],
+    props: ['mentor'],
     methods: {
         printMenssage() {
             return getMenssage((query) => {
@@ -48,7 +46,7 @@ export default {
             })
         },
         set(n) {
-            this.$refs.BotAnswer.receivedMenssageUser(n)
+            this.$refs.BotAnswer.receivedMenssageUser(n, this.mentor)
         },
     },
     created() {
