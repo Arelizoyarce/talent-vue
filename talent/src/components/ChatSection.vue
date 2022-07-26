@@ -4,37 +4,37 @@
             <router-link :to="'/'" class="text-decoration-none white--text">Volver</router-link>
         </v-btn>
         <h2 class="">Chat reciente</h2>
-        <v-card min-width="1000" min-height="500" max-height="500" class="pa-4 my-4" color="#21456E">
-            <div>
-                <v-avatar size="56">
-                    <v-img></v-img>
-                </v-avatar>
-                <div>
-                    <v-card color="#002855" class="my-2">
-                        <v-card-text class="white--text">¡Hola, soy Kami!</v-card-text>
-                    </v-card>
-                    <v-card color="#002855" class="my-2">
-                        <v-card-text class="white--text">Escribe prevemente cuál es tu consulta</v-card-text>
-                    </v-card>
-                </div>
+
+        <v-card min-width="1000" min-height="500" max-height="500" class=" my-4" color="#21456E">
+            <!-- <v-virtual-scroll min-height="500">
+                <template> -->
+            <BotAnswer></BotAnswer>
+            <div v-for="item in menssage" v-bind:key="item.id" max-width="200" :class="item.name === 'Carina' ? 'd-flex flex-column align-end' : 'd-flex flex-column align-start'">
+                <v-card>
+                    {{ item.menssage }}
+                </v-card>
             </div>
-            <v-card v-for="item in menssage" v-bind:key="item.id">
-                {{ item.menssage }}
-            </v-card>
-            <v-card>
-            </v-card>
+            <!-- </template>
+            </v-virtual-scroll> -->
         </v-card>
+        <InputMessage></InputMessage>
     </div>
 </template>
 
 <script>
 import { getMenssage } from "../services/firebase.js"
+import BotAnswer from "./BotAnswer.vue"
+import InputMessage from "./InputMessage.vue"
 export default {
     name: 'ChatSection',
     data() {
         return ({
             menssage: null,
         })
+    },
+    components: {
+        BotAnswer,
+        InputMessage
     },
     methods: {
         printMenssage() {
@@ -45,7 +45,7 @@ export default {
                 })
                 this.menssage = allMenssages;
             })
-        }
+        },
     },
     created() {
         this.printMenssage()

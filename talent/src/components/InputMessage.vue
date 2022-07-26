@@ -18,20 +18,36 @@ export default {
   name: 'InputMessage',
   data() {
     return ({
-      input: ''
+      input: '',
+      answerBot: ''
     })
   },
   methods: {
     sendMenssage() {
-      const containerMenssage ={
+      const containerMenssage = {
         user: 'Carina',
         mentor: 'Omaira',
         menssage: this.input,
-        time: new Date()
+        time: Date()
       }
-      
-      addData(containerMenssage)
-      this.input = ''
+      if (this.input.includes('hola')) {
+        this.answerBot = 'Hola Cómo puedo ayudarte'
+      } else if (this.input.includes('1')) {
+        this.answerBot = 'Eligetal'
+      }
+      if (this.input != '') {
+        addData(containerMenssage)
+        setTimeout(() => {
+          const menssageBot = {
+            user: 'Kamy',
+            mentor: 'Omaira',
+            menssage: this.answerBot,
+            time: Date()
+          }
+          addData(menssageBot)
+        }, 1000)
+        this.input = ''
+      }
     }
   }
 }
