@@ -1,8 +1,10 @@
 <template>
     <div class="d-flex flex-row align-center pa-5">
+
         <v-avatar size="70">
             <v-img :src=img></v-img>
         </v-avatar>
+
         <div>
             <v-card color="#002855" class="my-1">
                 <v-card-text class="white--text">{{ sayHi }}</v-card-text>
@@ -12,12 +14,14 @@
             </v-card>
             <div v-if="this.mentorCalled===''"> Seleciona un mentor </div>
         </div>
+
     </div>
 </template>
 
 <script>
 import { addData } from '../services/firebase.js'
 import {answers} from './answerFlow.js'
+
 export default {
     name: 'BotAnswer',
     data() {
@@ -29,6 +33,7 @@ export default {
             mentorCalled: ''
         })
     },
+
     methods: {
         receivedMenssageUser(receivedMenssage, mentor){
             this.mentorCalled= mentor
@@ -61,9 +66,6 @@ export default {
             }, 1000)
             }
         }
-    },
-    mounted() {
-        this.menssageUser
     }
 }
 </script>

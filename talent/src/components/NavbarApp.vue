@@ -8,7 +8,9 @@
                 <v-icon class="mx-1 pa-1">fas fa-circle-user</v-icon>
             </v-card>
             <v-btn icon class="mx-3">
-                <v-icon>fas fa-bell</v-icon>
+                <v-badge color="pink" dot>
+                    <v-icon>fas fa-bell</v-icon>
+                </v-badge>
             </v-btn>
         </v-app-bar>
     </div>

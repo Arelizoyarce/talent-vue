@@ -1,7 +1,7 @@
 <template>
-    <div class="d-flex flex-row-reverse justify-space-around">
-        <MentorsSection @sendMentor="receivedMentor"></MentorsSection>
-        <ChatSection :mentor="mentorName" ref="ChatSection"></ChatSection>
+    <div class="d-flex flex-row-reverse">
+        <MentorsSection @sendMentor="receivedMentor" class="col-3"></MentorsSection>
+        <ChatSection :mentor="mentorName" ref="ChatSection" class="col-8"></ChatSection>
     </div>
 </template>
 

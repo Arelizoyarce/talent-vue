@@ -5,22 +5,24 @@
         </v-card-title>
         <v-col class="pa-4" justify="space-between">
             <div>
-            <v-card class="" v-for="item in mentorSelect" v-bind:key="item.name" color="#21456E" max-width="300" min-height="200">
+            <v-card v-for="item in mentorSelect" v-bind:key="item.name" color="#21456E" max-width="300" min-height="200" class="d-flex flex-column justify-center aling-center pa-5">
             <v-avatar>
                 <v-img :src=item.img></v-img>
             </v-avatar>
                 <v-card-title class="white--text">{{item.name}}</v-card-title>
                 <v-card-subtitle class="white--text">{{item.role}}</v-card-subtitle>
                 <v-card-text>
-                    <h2>Habilidades</h2>
-                    <div v-for="subitem in item.skills" v-bind:key="subitem" class="d-flex flex-row flex-wrap">
-                    <v-card max-width="50">
+                    <h4 class="white--text">Habilidades</h4>
+                    <div class="my-4">
+                    <v-row>
+                    <v-card max-width="100" v-for="subitem in item.skills" v-bind:key="subitem" class="ma-1 pa-1">
                         {{subitem}}
                     </v-card>
+                    </v-row>
                     </div>
                 </v-card-text>
             </v-card>
-            <h2 v-if="mentorSelect != ''">Otros Mentores</h2>
+            <h2 v-show="mentorSelect != ''" class="white--text">Otros Mentores</h2>
             </div>
             <div class="d-flex flex-column">
                 <v-card v-for="item in mentors" v-bind:key="item.name" @click="getMentor" :id="item.name"
@@ -53,6 +55,7 @@ export default {
             }
         )
     },
+
     methods: {
         getMentor(event) {
             this.$emit('sendMentor', event.target.id)
@@ -60,6 +63,7 @@ export default {
             this.mentorSelect = this.allMentors.filter((e)=> e.name === event.target.id)
         }
     },
+
     created() {
         getData('mentors').then((data) => {
             const arrayMentors = []
