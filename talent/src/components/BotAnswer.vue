@@ -10,12 +10,14 @@
             <v-card color="#002855" class="my-2">
                 <v-card-text class="white--text">{{ help }}</v-card-text>
             </v-card>
+            <div v-if="this.mentorCalled===''"> Seleciona un mentor </div>
         </div>
     </div>
 </template>
 
 <script>
 import { addData } from '../services/firebase.js'
+import {answers} from './answerFlow.js'
 export default {
     name: 'BotAnswer',
     data() {
@@ -23,39 +25,32 @@ export default {
             sayHi: 'Hola Carina',
             help: 'Escribe brevemente tu consulta',
             img: 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png',
-            answer: 'RESPUESTA DEFAULT'
-            // answers: {
-            //     menssage: 'Hola, para ayudarte, indicame sobre qué tema tienes dudas, marcando una de las siguiente opciones',
-            //     options: {
-            //         1: {
-            //             menssage: 'Deseas agendar con el tutor Omaira',
-            //             options: {
-            //                 1: {
-            //                     menssage: 'mostrar disponibilidad'
-            //                 },
-            //                 2: {
-            //                     menssage: this.answers.menssage
-            //                 }
-            //             }
-            //         },
-            //         2: {
-            //             menssage: 'Aquí te adjunto un tutorial de cómo subir tu proyecto final',
-            //             video:'https://youtu.be/eWMN2ueNzSQ'
-            //         },
-            //         3: {
-            //             menssage: 'El cerificado se otroga al ser aprovado tu proyecto final'
-            //         },
-            //         4: {
-            //             menssage:'Especifica tu consulta, proto te atenderá personal especializado'
-            //         }
-            //     }
-            // },
+            answer: String,
+            mentorCalled: ''
         })
     },
     methods: {
-        receivedMenssageUser(menssage, mentor){
-            if(menssage != ''){
-            return setTimeout(() => {
+        receivedMenssageUser(receivedMenssage, mentor){
+            this.mentorCalled= mentor
+            if(receivedMenssage != ''){
+                //first question
+                if(receivedMenssage.includes('consulta')|| receivedMenssage.includes('hola')|| receivedMenssage.includes('duda')
+                ){
+                    this.answer= answers.menssage + '1.' + answers.options[1]+ '2.'+ answers.options[2] + '3.'+ answers.options[3]
+                }else if(receivedMenssage.includes('1', 0)){
+                    this.answer= answers.menssage1.m + mentor
+                }else if(receivedMenssage.includes('2', 0)){
+                    this.answer= answers.menssage2
+                }else if(receivedMenssage.includes('3',0)){
+                    this.answer= answers.menssage3
+                }else if(receivedMenssage.includes('si')|| receivedMenssage.includes('Si')){
+                    this.answer = 'Los horarios son los siguientes'
+                }else if(receivedMenssage.includes('no')|| receivedMenssage.includes('No')){
+                    this.answer= answers.menssage
+                }else{
+                    this.answer= 'Muchas gracias por tu consulta vuelve pronto'
+                }
+            setTimeout(() => {
                 const answerBot = {
                     name: 'Kami',
                     mentor: mentor,

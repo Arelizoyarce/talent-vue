@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-row-reverse justify-space-around">
         <MentorsSection @sendMentor="receivedMentor"></MentorsSection>
-        <ChatSection :mentor="mentorName"></ChatSection>
+        <ChatSection :mentor="mentorName" ref="ChatSection"></ChatSection>
     </div>
 </template>
 
@@ -21,7 +21,8 @@ export default {
 },
     methods: {
         receivedMentor(n) {
-            this.mentorName = n
+            this.mentorName= n
+            this.$refs.ChatSection.printMenssage()
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card-title class="white--text text-h5">
-            > Transformación digital
+            Transformación digital
         </v-card-title>
         <v-col class="pa-4" justify="space-between">
             <div>

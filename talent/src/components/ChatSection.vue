@@ -21,12 +21,12 @@
 import { getMenssage } from "../services/firebase.js"
 import BotAnswer from "./BotAnswer.vue"
 import InputMessage from "./InputMessage.vue"
-// import { addData } from '../services/firebase.js'
 export default {
     name: 'ChatSection',
     data() {
         return ({
             menssage: Array,
+            allMenssages: Array,
             input: String,
         })
     },
@@ -34,23 +34,22 @@ export default {
         BotAnswer,
         InputMessage
     },
-    props: ['mentor'],
+    props:['mentor'],
     methods: {
         printMenssage() {
             return getMenssage((query) => {
-                const allMenssages = [];
+                const arrayMenssages = [];
                 query.forEach((doc) => {
-                    allMenssages.push(doc.data())
+                    arrayMenssages.push(doc.data())
                 })
-                this.menssage = allMenssages;
+                this.allMenssages = arrayMenssages;
+                this.menssage= this.allMenssages.filter(e=> e.mentor=== this.mentor)
+                console.log(this.menssage)
             })
         },
         set(n) {
             this.$refs.BotAnswer.receivedMenssageUser(n, this.mentor)
         },
     },
-    created() {
-        this.printMenssage()
-    }
 }
 </script>
