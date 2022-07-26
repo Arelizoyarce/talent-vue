@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     sendMenssage() {
+      this.$emit('setevent', this.input)
       const containerMenssage = {
         user: 'Carina',
         mentor: 'Omaira',
@@ -37,15 +38,6 @@ export default {
       }
       if (this.input != '') {
         addData(containerMenssage)
-        setTimeout(() => {
-          const menssageBot = {
-            user: 'Kamy',
-            mentor: 'Omaira',
-            menssage: this.answerBot,
-            time: Date()
-          }
-          addData(menssageBot)
-        }, 1000)
         this.input = ''
       }
     }

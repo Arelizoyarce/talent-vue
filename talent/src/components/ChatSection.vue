@@ -6,18 +6,15 @@
         <h2 class="">Chat reciente</h2>
 
         <v-card min-width="1000" min-height="500" max-height="500" class=" my-4" color="#21456E">
-            <!-- <v-virtual-scroll min-height="500">
-                <template> -->
-            <BotAnswer></BotAnswer>
-            <div v-for="item in menssage" v-bind:key="item.id" max-width="200" :class="item.name === 'Carina' ? 'd-flex flex-column align-end' : 'd-flex flex-column align-start'">
+            <BotAnswer ref="BotAnswer"></BotAnswer>
+            <div v-for="item in menssage" v-bind:key="item.id" max-width="200"
+                :class="item.name === 'Carina' ? 'd-flex flex-column align-end' : 'd-flex flex-column align-start'">
                 <v-card>
                     {{ item.menssage }}
                 </v-card>
             </div>
-            <!-- </template>
-            </v-virtual-scroll> -->
         </v-card>
-        <InputMessage></InputMessage>
+        <InputMessage @setevent="set"></InputMessage>
     </div>
 </template>
 
@@ -25,26 +22,33 @@
 import { getMenssage } from "../services/firebase.js"
 import BotAnswer from "./BotAnswer.vue"
 import InputMessage from "./InputMessage.vue"
+// import { addData } from '../services/firebase.js'
 export default {
     name: 'ChatSection',
     data() {
         return ({
             menssage: null,
+            input: null,
+            receivedMenssageUser:'',
         })
     },
     components: {
         BotAnswer,
         InputMessage
     },
+    props:[],
     methods: {
         printMenssage() {
-            getMenssage((query) => {
+            return getMenssage((query) => {
                 const allMenssages = [];
                 query.forEach((doc) => {
                     allMenssages.push(doc.data())
                 })
                 this.menssage = allMenssages;
             })
+        },
+        set(n) {
+            this.$refs.BotAnswer.receivedMenssageUser(n)
         },
     },
     created() {
