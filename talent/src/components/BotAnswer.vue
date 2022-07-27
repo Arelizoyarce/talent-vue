@@ -12,7 +12,7 @@
             <v-card color="#002855" class="my-2">
                 <v-card-text class="white--text">{{ help }}</v-card-text>
             </v-card>
-            <div v-if="this.mentorCalled===''"> Seleciona un mentor </div>
+            <div v-if="this.mentorCalled === ''"> Seleciona un mentor </div>
         </div>
 
     </div>
@@ -20,7 +20,7 @@
 
 <script>
 import { addData } from '../services/firebase.js'
-import {answers} from './answerFlow.js'
+import { answers } from './answerFlow.js'
 
 export default {
     name: 'BotAnswer',
@@ -30,41 +30,56 @@ export default {
             help: 'Escribe brevemente tu consulta',
             img: 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png',
             answer: String,
-            mentorCalled: ''
+            mentorCalled: '',
+            arrayMenssages: []
         })
     },
 
     methods: {
-        receivedMenssageUser(receivedMenssage, mentor){
-            this.mentorCalled= mentor
-            if(receivedMenssage != ''){
-                //first question
-                if(receivedMenssage.includes('consulta')|| receivedMenssage.includes('hola')|| receivedMenssage.includes('duda')
-                ){
-                    this.answer= answers.menssage + '1.' + answers.options[1]+ '2.'+ answers.options[2] + '3.'+ answers.options[3]
-                }else if(receivedMenssage.includes('1', 0)){
-                    this.answer= answers.menssage1.m + mentor
-                }else if(receivedMenssage.includes('2', 0)){
-                    this.answer= answers.menssage2
-                }else if(receivedMenssage.includes('3',0)){
-                    this.answer= answers.menssage3
-                }else if(receivedMenssage.includes('si')|| receivedMenssage.includes('Si')){
-                    this.answer = 'Los horarios son los siguientes'
-                }else if(receivedMenssage.includes('no')|| receivedMenssage.includes('No')){
-                    this.answer= answers.menssage
-                }else{
-                    this.answer= 'Muchas gracias por tu consulta vuelve pronto'
+        receivedMenssageUser(receivedMenssage, mentor) {
+            this.mentorCalled = mentor;
+            this.arrayMenssages.push(receivedMenssage);
+            let arrayMenssagesAux = this.arrayMenssages;
+            arrayMenssagesAux.forEach((e, i) => {
+                if (i === 0) {
+                    if (e.includes('hola') || e.includes('ayuda') || e.includes('consulta')) {
+                        this.answer = answers.menssage
+                    } else {
+                        this.answer = answers.menssage
+                    }
                 }
+                if (i === 1) {
+                    if (e==='1') {
+                        this.answer = answers.options.mentor.menssage + this.mentorCalled
+                    } else if(e==='2'){
+                        this.answer=answers.options.project.menssage
+                    }else if(e==='3'){
+                        this.answer= answers.options.certification.menssage
+                    }else if( e==='4'){
+                        this.answer=answers.options.others.menssage
+                    }else{
+                        this.answer=answers.menssage
+                    }
+                } else if (i === 2) {
+                    if (e === '1') {
+                        this.answer = answers.options.mentor.options[1]
+                    } else if (e==='2') {
+                        this.answer = answers.options.mentor.options[2]
+                    } else {
+                        arrayMenssagesAux=this.arrayMenssages
+                        this.answer = answers.menssage
+                    }
+                }
+            })
             setTimeout(() => {
                 const answerBot = {
                     name: 'Kami',
-                    mentor: mentor,
+                    mentor: this.mentorCalled,
                     menssage: this.answer,
                     time: Date()
                 }
                 addData(answerBot)
             }, 1000)
-            }
         }
     }
 }

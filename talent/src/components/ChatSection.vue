@@ -6,7 +6,7 @@
         </v-btn>
         <h2 class="white--text my-2">Chat reciente</h2>
 
-        <v-card max-width="1000" min-height="500" max-height="500" class=" my-4" color="#21456E"  v-scroll>
+        <v-card max-width="1000" min-height="500" max-height="500" class=" my-4" color="#21456E">
             <BotAnswer ref="BotAnswer"></BotAnswer>
             <div v-for="item in menssage" v-bind:key="item.id" max-width="200" class="d-flex flex-column" right>
                 <v-card max-width="400" class="ma-4 pa-5" :color="item.name==='Kami'? '#002855':'white'">
