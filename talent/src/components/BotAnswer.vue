@@ -50,7 +50,7 @@ export default {
                 }
                 if (i === 1) {
                     if (e==='1') {
-                        this.answer = answers.options.mentor.menssage + this.mentorCalled
+                        this.answer = answers.options.mentor.menssage
                     } else if(e==='2'){
                         this.answer=answers.options.project.menssage
                     }else if(e==='3'){
@@ -62,7 +62,7 @@ export default {
                     }
                 } else if (i === 2) {
                     if (e === '1') {
-                        this.answer = answers.options.mentor.options[1]
+                        this.answer = answers.options.mentor.options[1].menssage
                     } else if (e==='2') {
                         this.answer = answers.options.mentor.options[2]
                     } else {

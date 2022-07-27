@@ -1,14 +1,14 @@
 export const answers = {
-    menssage: 'Hola, Para ayudarte, indicame sobre qué tema tienes dudas, marcando una de las siguientes opciones:',
+    menssage: 'Hola, Para ayudarte, indicame sobre qué tema tienes dudas, marcando una de las siguientes opciones: 1.Agendar con mentor 2.Proyecto final 3.Certificación 4.Otros',
     options: {
         mentor: {
-            menssage: 'Deseas agendar con:',
+            menssage: 'Deseas agendar con el mentor seleccionado: 1.Si 2.No',
             options: {
                 1: {
                     menssage: 'Tiene los siguientes horarios disponibles:'
                 },
                 2:{
-                    menssage: 'Estoy atenta'
+                    menssage: 'No hay horarios disponible'
                 }
             }
         },
