@@ -6,10 +6,10 @@
         </v-btn>
         <h2 class="white--text my-2">Chat reciente</h2>
 
-        <v-card max-width="1000" min-height="500" max-height="500" class=" my-4" color="#21456E">
+        <v-card max-width="1000" min-height="500" max-height="500" class=" my-4 overflow-auto" color="#21456E">
             <BotAnswer ref="BotAnswer"></BotAnswer>
-            <div v-for="item in menssage" v-bind:key="item.id" max-width="200" class="d-flex flex-column" right>
-                <v-card max-width="400" class="ma-4 pa-5" :color="item.name==='Kami'? '#002855':'white'">
+            <div v-for="item in menssage" v-bind:key="item.id" max-width="200" :class="item.name==='Kami'?'d-flex flex-column align-right':'d-flex flex-column align-end'">
+                <v-card max-width="400" class="ma-4 pa-5" :color="item.name==='Kami'? '#002855':'white'" :class="item.name==='Kami'? 'd-flex flex-column white--text':'d-flex flex-column'">
                     {{ item.menssage }}
                 </v-card>
             </div>
