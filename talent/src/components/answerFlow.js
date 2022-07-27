@@ -5,11 +5,11 @@ export const answers = {
             menssage: 'Deseas agendar con el mentor seleccionado: 1.Si 2.No',
             options: {
                 1: {
-                    menssage: 'Tiene los siguientes horarios disponibles:'
+                    menssage: 'Tiene los siguientes horarios disponibles: Lunes 8:00am a 9:00am'
                 },
                 2:{
                     menssage: 'No hay horarios disponible'
-                }
+                    }
             }
         },
         project:{
